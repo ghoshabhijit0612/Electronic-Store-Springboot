@@ -2,6 +2,7 @@ package com.Electronic.Store.services.imple;
 
 import com.Electronic.Store.dtos.Userdtos;
 import com.Electronic.Store.entities.User;
+import com.Electronic.Store.exceptions.ResourceNotFoundException;
 import com.Electronic.Store.repositories.UserRepository;
 import com.Electronic.Store.services.UserService;
 import org.modelmapper.ModelMapper;
@@ -40,7 +41,7 @@ public class UserServiceImple implements UserService {
     @Override
     public Userdtos updateUser(Userdtos userdtos, String id) {
 
-        User user = userRepository.findById(id).orElseThrow(()->new RuntimeException("id not found exception"));
+        User user = userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("id not found exception"));
         user.setName(userdtos.getName());
         user.setGender(userdtos.getGender());
         user.setPassword(userdtos.getPassword());
@@ -53,7 +54,7 @@ public class UserServiceImple implements UserService {
 
     @Override
     public Userdtos getUserById(String id) {
-        User user = userRepository.findById(id).orElseThrow(()->new RuntimeException("not found id"));
+        User user = userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("not found id"));
         Userdtos userdtos = EntityTodto(user);
         return userdtos;
     }
@@ -61,7 +62,7 @@ public class UserServiceImple implements UserService {
     @Override
     public Userdtos getUserByEmail(String email) {
 
-        User user = userRepository.findByEmail(email).orElseThrow(()->new RuntimeException("user not found with this  email"));
+        User user = userRepository.findByEmail(email).orElseThrow(()->new ResourceNotFoundException("user not found with this  email"));
         Userdtos userdtos = EntityTodto(user);
         return userdtos;
     }
@@ -77,7 +78,7 @@ public class UserServiceImple implements UserService {
 
     @Override
     public void deleteUser(String id) {
-        User user = userRepository.findById(id).orElseThrow(()->new RuntimeException("not found id"));
+        User user = userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("not found id"));
         userRepository.delete(user);
 
     }
