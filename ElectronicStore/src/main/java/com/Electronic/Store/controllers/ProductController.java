@@ -64,6 +64,14 @@ public class ProductController {
         return new ResponseEntity<>(allProductLive,HttpStatus.OK);
     }
 
+    @GetMapping("/{title}")
+    public ResponseEntity<List<Productdtos>> findByTitle(@PathVariable String title){
+        List<Productdtos> byTitle = productService.findByTitle(title);
+        return new ResponseEntity<>(byTitle,HttpStatus.OK);
+
+
+    }
+
 
 
     //get-all-live product which is in the stock

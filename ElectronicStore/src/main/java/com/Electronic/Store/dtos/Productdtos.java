@@ -1,6 +1,6 @@
 package com.Electronic.Store.dtos;
 
-import jakarta.persistence.Column;
+import com.Electronic.Store.entities.Catagory;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,4 +27,5 @@ public class Productdtos {
     private Date addedDate;
     private boolean live;
     private boolean stock;
+    private Catagory catagory;
 }

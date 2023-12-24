@@ -1,9 +1,8 @@
 package com.Electronic.Store.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
@@ -28,5 +27,10 @@ public class Product {
     private Date addedDate;
     private boolean live;
     private boolean stock;
+
+    @ManyToOne
+    @JoinColumn(name = "catagory_id")
+    @JsonIgnoreProperties("product")
+    private Catagory catagory;
 
 }

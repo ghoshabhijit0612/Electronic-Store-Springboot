@@ -55,6 +55,14 @@ public class CatagoryServiceImple implements CatagoryService {
         return list;
 
     }
+
+    @Override
+    public Catagory getCatagory(String id) {
+        Catagory catagory1 =(catagoryRepository.findById(id).orElseThrow(()->new RuntimeException("not found")));
+        return catagory1;
+    }
+
+
     public Catagorydtos CatagoryToCatagorydto(Catagory catagory){
         return modelMapper.map(catagory,Catagorydtos.class);
     }

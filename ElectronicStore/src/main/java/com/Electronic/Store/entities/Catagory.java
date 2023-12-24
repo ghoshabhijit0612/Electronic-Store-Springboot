@@ -1,11 +1,13 @@
 package com.Electronic.Store.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.*;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -22,6 +24,11 @@ public class Catagory {
     private String title;
     @Column(name = "Description", length = 50)
     private String description;
+
+
+    @OneToMany(mappedBy = "catagory",cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("catagory")
+    private List<Product> products = new ArrayList<>();
 
 
 }

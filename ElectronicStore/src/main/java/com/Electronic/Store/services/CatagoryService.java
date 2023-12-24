@@ -1,6 +1,7 @@
 package com.Electronic.Store.services;
 
 import com.Electronic.Store.dtos.Catagorydtos;
+import com.Electronic.Store.entities.Catagory;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface CatagoryService {
 
     //getAll
     List<Catagorydtos> getAllCatagory();
+
+    Catagory getCatagory(String id);
 
 
 
